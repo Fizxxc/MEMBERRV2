@@ -2,54 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "public/**",
+      "src": "public/**/*",
       "use": "@vercel/static"
     }
   ],
-  "routes": [
-    {
-      "src": "/firebase.js",
-      "dest": "/public/firebase.js",
-      "headers": {
-        "Content-Type": "application/javascript"
-      }
-    },
-    {
-      "src": "/script.js",
-      "dest": "/public/script.js",
-      "headers": {
-        "Content-Type": "application/javascript"
-      }
-    },
-    {
-      "src": "/style.css",
-      "dest": "/public/style.css",
-      "headers": {
-        "Content-Type": "text/css"
-      }
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/public/index.html",
-      "headers": {
-        "Cache-Control": "s-maxage=3600, stale-while-revalidate=86400",
-        "Content-Type": "text/html"
-      }
-    }
-  ],
-  "headers": [
+  "rewrites": [
     {
       "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://www.gstatic.com https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; font-src 'self' https://cdnjs.cloudflare.com; img-src 'self' data:; connect-src 'self' https://memberr-card-default-rtdb.firebaseio.com;"
-        }
-      ]
+      "destination": "/public/index.html"
     }
   ]
 }
