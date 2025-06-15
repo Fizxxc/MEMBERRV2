@@ -6,10 +6,27 @@
       "use": "@vercel/static"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/public/index.html"
+      "src": "/(.*\\.js)",
+      "dest": "/public/$1",
+      "headers": {
+        "Content-Type": "application/javascript"
+      }
+    },
+    {
+      "src": "/(.*\\.css)",
+      "dest": "/public/$1",
+      "headers": {
+        "Content-Type": "text/css"
+      }
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/index.html",
+      "headers": {
+        "Content-Type": "text/html"
+      }
     }
   ]
 }
